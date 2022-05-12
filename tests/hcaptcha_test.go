@@ -60,5 +60,4 @@ func Test_hcaptcha_identity(t *testing.T) {
 		return
 	}
 	fmt.Println(identifyResult.Data)
-
 }
