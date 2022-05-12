@@ -8,10 +8,22 @@
 go get github.com/superaipro/superai-go-sdk
 ```
 
+* touch main.go
+
 ``` go
-func test(){
+`package main
+
+import (
+	"context"
+	"fmt"
+	superaipro "github.com/superaipro/superai-go-sdk"
+	"log"
+	"time"
+)
+
+func main() {
 	// apiKey
-	apiKey := "aa37d476-c06a-4a8f-bb94-xxxxx" // your apikey
+	apiKey := " b22e415c-4c99-4df3-bd23-38d112cde840" // your apikey
 	client := superaipro.NewClient(apiKey)
 	//identify
 	identifyData := superaipro.Identify{
@@ -26,5 +38,25 @@ func test(){
 		return
 	}
 	fmt.Println(identifyResult.Data)
+
+	capData := superaipro.HCaptcha{
+		SiteKey: "51829642-2cda-4b09-896c-594f89d700cc",
+		Url:     "http://democaptcha.com/demo-form-eng/hcaptcha.html",
+		Type:    "HCaptchaV1",
+		Timeout: 120,
+	}
+
+	req := capData.ToRequest()
+	req.SetProxy("HTTPS", "154.80.xxx.xxx:8080:username:password") // your proxy
+	req.SetUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36")
+	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*60)
+	defer cancel()
+	taskStatus, err := client.Solve(ctx, req)
+	if err != nil {
+		return
+	}
+	fmt.Println(taskStatus.Token, err)
 }
-```
+``
+
+* go run main.go
