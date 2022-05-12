@@ -46,7 +46,7 @@ func Test_hcaptcha(t *testing.T) {
 }
 func Test_hcaptcha_identity(t *testing.T) {
 	// apiKey
-	apiKey := "aa37d476-c06a-4a8f-bb94-xxxxx" // your apikey
+	apiKey := "4c00eee3-3d4a-4fb7-a385-10f8b4fc2f41" // your apikey
 	client := superaipro.NewClient(apiKey)
 	//identify
 	identifyData := superaipro.Identify{

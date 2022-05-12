@@ -21,9 +21,10 @@ const (
 )
 
 var (
-	ErrNetwork = errors.New("superai: Network failure")
-	ErrApi     = errors.New("superai: API error")
-	ResErr     = "api error StatusCode:"
+	ErrNetwork          = errors.New("superai: Network failure")
+	ErrApi              = errors.New("superai: API error")
+	ErrNotAuthorization = errors.New("superai: request unauthorized")
+	ResErr              = "api error StatusCode:"
 )
 
 func NewClient(apiKey string) IClient {
@@ -104,6 +105,9 @@ func (c *Client) req(ctx context.Context, path string, req Request) (string, err
 	}
 	data := body.String()
 
+	if resp.StatusCode == 401 {
+		return "", ErrNotAuthorization
+	}
 	if resp.StatusCode != http.StatusOK {
 		return "", ErrApi
 	}
