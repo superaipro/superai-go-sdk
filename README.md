@@ -5,7 +5,7 @@
 [Docs](https://github.com/superaipro/superai-go-sdk/tree/main/tests)
 
 ```
-go get /superaipro/superai-go-sdk
+go get github.com/superaipro/superai-go-sdk
 ```
 
 ``` go

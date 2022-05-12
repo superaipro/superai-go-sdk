@@ -4,9 +4,10 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"superaipro"
 	"testing"
 	"time"
+
+	superaipro "github.com/superaipro/superai-go-sdk"
 )
 
 func Test_hcaptcha(t *testing.T) {
